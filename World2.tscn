@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://score_label.gd" type="Script" id=1]
+[ext_resource path="res://wallNS.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://computer_paddle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://wallE.tscn" type="PackedScene" id=5]
+[ext_resource path="res://wallW.tscn" type="PackedScene" id=6]
+[ext_resource path="res://wallEW.tscn" type="PackedScene" id=7]
+[ext_resource path="res://p1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://World2.gd" type="Script" id=9]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="p1 node" type="Node2D" parent="."]
+position = Vector2( 3, 1 )
+
+[node name="p1" parent="p1 node" instance=ExtResource( 8 )]
+position = Vector2( 99, 66 )
+
+[node name="Sprite" parent="p1 node/p1" index="0"]
+position = Vector2( 2, 3 )
+
+[node name="CollisionShape2D" parent="p1 node/p1" index="1"]
+position = Vector2( 2, 0 )
+
+[node name="com_node" type="Node2D" parent="."]
+
+[node name="computer_paddle" parent="com_node" instance=ExtResource( 4 )]
+
+[node name="ball_Spawner" type="Node2D" parent="."]
+
+[node name="respawn_point" type="Area2D" parent="ball_Spawner"]
+position = Vector2( 481, 274 )
+
+[node name="ball" parent="ball_Spawner" instance=ExtResource( 3 )]
+position = Vector2( 515, 266 )
+
+[node name="ball" parent="ball_Spawner/ball" index="0"]
+position = Vector2( 0, -4 )
+
+[node name="CollisionShape2D" parent="ball_Spawner/ball" index="1"]
+position = Vector2( 0, -3 )
+
+[node name="wallNS node" type="Node2D" parent="."]
+
+[node name="wallNS" parent="wallNS node" instance=ExtResource( 2 )]
+
+[node name="wallEW node" type="Node2D" parent="."]
+
+[node name="wallE" parent="wallEW node" instance=ExtResource( 5 )]
+position = Vector2( 4, -13 )
+
+[node name="wallW" parent="wallEW node" instance=ExtResource( 6 )]
+position = Vector2( -7, -3 )
+
+[node name="wallEW" parent="wallEW node" instance=ExtResource( 7 )]
+position = Vector2( 1191, 108 )
+
+[node name="wallEW2" parent="wallEW node" instance=ExtResource( 7 )]
+position = Vector2( 1236, 169 )
+
+[node name="background_objects" type="Node2D" parent="."]
+
+[node name="score_label" type="Label" parent="background_objects"]
+margin_left = 500.0
+margin_top = 20.0
+margin_right = 527.0
+margin_bottom = 34.0
+text = "0 - 0"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="area_entered" from="wallEW node/wallE" to="." method="_on_wallE_area_entered"]
+
+[editable path="p1 node/p1"]
+[editable path="ball_Spawner/ball"]

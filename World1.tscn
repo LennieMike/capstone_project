@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://p1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://p2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://wallNS.tscn" type="PackedScene" id=4]
+[ext_resource path="res://wallEW.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World1.gd" type="Script" id=6]
+[ext_resource path="res://score_label.gd" type="Script" id=7]
+[ext_resource path="res://wallW.tscn" type="PackedScene" id=8]
+[ext_resource path="res://wallE.tscn" type="PackedScene" id=9]
+[ext_resource path="res://computer_paddle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assests/NotoSans_Condensed-Black.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://music_node.tscn" type="PackedScene" id=12]
+[ext_resource path="res://KEYGEN CHURCH - Tenebre Rosso Sangue (ULTRAKILL Soundtrack).mp3" type="AudioStream" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 11 )
+
+[node name="World1" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="p1 node" type="Node2D" parent="."]
+position = Vector2( 3, 1 )
+
+[node name="p1" parent="p1 node" instance=ExtResource( 1 )]
+position = Vector2( 99, 66 )
+
+[node name="Sprite" parent="p1 node/p1" index="0"]
+position = Vector2( 2, 3 )
+
+[node name="CollisionShape2D" parent="p1 node/p1" index="1"]
+position = Vector2( 2, 0 )
+
+[node name="com_node" type="Node2D" parent="."]
+
+[node name="computer_paddle" parent="com_node" instance=ExtResource( 10 )]
+position = Vector2( 545, 69 )
+
+[node name="Area2D" parent="com_node/computer_paddle" index="1"]
+position = Vector2( -91, -200 )
+
+[node name="comsprite" parent="com_node/computer_paddle/Area2D" index="0"]
+position = Vector2( 244, 206 )
+
+[node name="comcollision" parent="com_node/computer_paddle/Area2D" index="1"]
+position = Vector2( 245, 207 )
+
+[node name="p2 node" type="Node2D" parent="."]
+visible = false
+
+[node name="p2" parent="p2 node" instance=ExtResource( 2 )]
+position = Vector2( 1, 6 )
+
+[node name="ball_Spawner" type="Node2D" parent="."]
+
+[node name="respawn_point" type="Area2D" parent="ball_Spawner"]
+position = Vector2( 388, 300 )
+
+[node name="ball" parent="ball_Spawner" instance=ExtResource( 3 )]
+position = Vector2( 422, 292 )
+
+[node name="ball" parent="ball_Spawner/ball" index="0"]
+position = Vector2( 0, -4 )
+
+[node name="CollisionShape2D" parent="ball_Spawner/ball" index="1"]
+position = Vector2( 0, -3 )
+
+[node name="wallNS node" type="Node2D" parent="."]
+
+[node name="wallNS" parent="wallNS node" instance=ExtResource( 4 )]
+
+[node name="wallEW node" type="Node2D" parent="."]
+
+[node name="wallE" parent="wallEW node" instance=ExtResource( 9 )]
+position = Vector2( -224, -24 )
+
+[node name="wallW" parent="wallEW node" instance=ExtResource( 8 )]
+position = Vector2( -7, -3 )
+
+[node name="wallEW" parent="wallEW node" instance=ExtResource( 5 )]
+position = Vector2( 1191, 108 )
+
+[node name="wallEW2" parent="wallEW node" instance=ExtResource( 5 )]
+position = Vector2( 1236, 169 )
+
+[node name="background_objects" type="Node2D" parent="."]
+
+[node name="score_label" type="Label" parent="background_objects"]
+margin_left = 392.0
+margin_top = 20.0
+margin_right = 419.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 1 )
+text = "0 - 0"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="audio" type="Node2D" parent="."]
+
+[node name="music_node" parent="audio" instance=ExtResource( 12 )]
+
+[node name="tembrerossosangue" type="AudioStreamPlayer" parent="audio/music_node"]
+stream = ExtResource( 13 )
+
+[connection signal="ball_out" from="wallEW node/wallE" to="." method="_on_wallE_ball_out"]
+[connection signal="ball_out" from="wallEW node/wallW" to="." method="_on_wallW_ball_out"]
+
+[editable path="p1 node/p1"]
+[editable path="com_node/computer_paddle"]
+[editable path="ball_Spawner/ball"]
