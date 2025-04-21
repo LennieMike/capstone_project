@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/KEYGEN CHURCH - Tenebre Rosso Sangue (ULTRAKILL Soundtrack).mp3-aff4e944917a6c4d4a3c8f2601fbd9b8.mp3str"
+
+[deps]
+
+source_file="res://KEYGEN CHURCH - Tenebre Rosso Sangue (ULTRAKILL Soundtrack).mp3"
+dest_files=[ "res://.import/KEYGEN CHURCH - Tenebre Rosso Sangue (ULTRAKILL Soundtrack).mp3-aff4e944917a6c4d4a3c8f2601fbd9b8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
