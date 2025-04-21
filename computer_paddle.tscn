@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://computer_paddle.gd" type="Script" id=1]
+[ext_resource path="res://output-onlinetools.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 14 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 17.0
+height = 116.0
+
+[node name="computer_paddle" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 460, -69 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="comsprite" type="Sprite" parent="Area2D"]
+modulate = Color( 0.337255, 0.772549, 0.870588, 1 )
+position = Vector2( 925, 70 )
+scale = Vector2( 0.514286, 0.433735 )
+texture = ExtResource( 2 )
+
+[node name="comcollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 925, 70 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
