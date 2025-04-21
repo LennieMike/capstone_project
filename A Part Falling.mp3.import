@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A Part Falling.mp3-f2bd064a3c58a40bcef1877d559a0b3f.mp3str"
+
+[deps]
+
+source_file="res://A Part Falling.mp3"
+dest_files=[ "res://.import/A Part Falling.mp3-f2bd064a3c58a40bcef1877d559a0b3f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
